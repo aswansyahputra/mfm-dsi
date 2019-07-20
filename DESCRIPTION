@@ -1,0 +1,18 @@
+Type: Compendium
+Package: mfmdsi
+Title: Melek for Member Data Science Indonesia Chapter West Java
+Version: 0.0.1
+Authors@R: 
+    person(given = "Muhammad Aswan",
+           family = "Syahputra",
+           role = c("aut", "cre"),
+           email = "muhammadaswansyahputra@gmail.com")
+Description: Compendium description
+License: CCBY-4.0
+Depends: 
+    knitr,
+    rmarkdown
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    ggplot2
