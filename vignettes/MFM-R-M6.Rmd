@@ -1,0 +1,99 @@
+---
+title: ""
+output: github_document
+---
+
+```{r, echo=FALSE}
+knitr::include_graphics("./images/header6.png")
+```
+
+***
+
+Seandainya kita memiliki dataset **weights**, **prices** dan **types** yang terikat satu sama lain, maka ketika ketika menambahkan satu data di dataset manapun maka kita juga harus menambahkan data baru di dataset lainnya. Untuk menghindari kerumitan menambahkan data secara manual di tiap dataset, baiknya dataset-dataset tersebut ada dalam satu struktur data.
+
+Untungnya, R memiliki struktur data untuk mengakomodasi hal diatas. R memiliki tipe data bentukan yang disebut **data frame**. Data frame berbentuk tabular seperti tabel di database atau spreadsheet di Excel, tentunya strukturnya berupa kolom dan baris.
+
+## 6.1 Data Frames
+Data harta karun kita bisa menjadi kandidat yang bagus untuk dijadikan sebuah data frame. Caranya sangat mudah, teman-teman cukup melewatkan vector **weights**, **prices** dan **types** ke dalam fungsi **data.frame** dan simpan didalam variabel **treasure**:
+
+```{r}
+weights <- c(300, 200, 100, 250, 150)
+prices <- c(9000, 5000, 12000, 7500, 18000)
+types <- c("gold", "silver", "gems", "gold", "gems")
+
+treasure <- data.frame(weights, prices, types)
+```
+
+Sekarang teman-teman bisa melihat isi data.frame treasure dengan perintah print:
+
+```{r}
+print(treasure)
+```
+
+Inventaris harta jarahan kita sudah tersusun rapih berdasarkan baris dan kolom.
+
+## 6.2 Data Frames Access
+Cara mengakses data di data frame semudah pengaksesan di matriks.
+
+Teman-teman bisa mendapatkan data kolom secara individual dengan memberikan nomor indeks mereka dengan menggunakan *double brackets*. Sekarang kita akan coba untuk mengakses kolom ke-2 (prices):
+
+```{r}
+treasure[[2]]
+```
+
+Kita juga bisa menggunakan nama kolom untuk mengakses data dari suatu kolom tentunya masih didalam double brackets dan menggunakan kutip ganda. Coba teman-teman panggil data kolom **"weights"**.
+
+```{r}
+treasure[["weights"]]
+```
+
+Mengetik semua tanda kurung dapat sedikit merepotkan, jadi kita bisa menggunakan fungsi *shorthand*: Nama frame data *diikuti* tanda dolar *diikuti* nama kolom (tanpa kutip ganda): 
+
+```{r}
+treasure$prices
+```
+
+Coba gunakan untuk mendapatkan kolom "types";
+
+```{r}
+treasure$types
+```
+
+## 6.3 Loading Data Frames
+Dalam prakteknya data frame akan di load dari sebuah file berupa teks file dan R memiliki kemampuan untuk dengan mudah me-*load* data ke dalam data frame yang berasal dari file eksternal. Gunakan fungsi **list.files** untuk melihat teks file yang sudah disediakan:
+
+```{r}
+list.files("../data-raw/")
+```
+
+Kita memiliki file bernama "targets.csv" yang berupa file CSV (Comma Separated Value). Untuk me-load fie CSV kita akan menggunakan fungsi **read.csv** dan melewatkan nama file yang akan kita load sebagai parameter. Run perintah dibawah untuk melihat isi targets.csv:
+
+```{r}
+read.csv("../data-raw/targets.csv")
+```
+
+file "infantry.txt" mempunyai format yang serupa, tapi fieldnya dipisahkan oleh tab bukan dengan koma. Kita bisa menggunakan fungsi **read.table** dengan parameter nama file dan karakter yang menjadi *separator-nya* (diisi di parameter **"sep"**) dan karena kita memiliki file dengan separator tab maka parameter tab diisi dengan **"\t"**:
+
+```{r}
+read.table("../data-raw/infantry.txt", sep = "\t")
+```
+
+Perhatikan nama kolom dari data diatas, disana tertulis "V1" dan "V2", itu karena baris ke-1 secara otomatis dianggap sebagai data. Untuk menjadikan kolom ke-1 diperlakukan sebagai header (jika memang header), tambahkan parameter header dan diisi TRUE:
+
+```{r}
+read.table("../data-raw/infantry.txt", sep = "\t", header = TRUE)
+```
+
+## 6.4 Merging Data Frames
+Kami ingin menjarah kota dengan harta paling banyak dan penjaga paling sedikit. Saat ini, kita harus melihat kedua file dan mencocokkan baris. Akan lebih baik jika data untuk kota pelabuhan dan kekuatan militernya berada dalam satu dataset.
+
+Itu bisa dilakukan dengan fungsi **merge**, dimana kita akan dapat menggabungkan dua data frame menjadi satu. Pertama-tama hasil pembacaan dua file diatas akan kita tampung dalam dua variabel, variabel **targets** dan **infantry**.
+
+Fungsi merge membutuhkan dua parameter, data frame x (targets) dan data frame y (infantry):
+
+```{r}
+targets <- read.csv("../data-raw/targets.csv")
+infantry <- read.table("../data-raw/infantry.txt", sep = "\t", header = TRUE)
+
+merge(x = targets, y = infantry)
+```
