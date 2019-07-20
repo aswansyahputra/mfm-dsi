@@ -192,7 +192,7 @@ abline(carModel, lty = 2)
 plot(mtcars$wt, mtcars$mpg, col = mtcars$cyl)
 lapply(mtcars$cyl, function(x) {
   abline(lm(mpg ~ wt, mtcars, subset = (cyl == x)), col = x)
-  })
+})
 ```
 
     ## [[1]]
@@ -293,8 +293,10 @@ lapply(mtcars$cyl, function(x) {
 
 ``` r
 # Tampilkan legend
-legend(x = 5, y = 33, legend = levels(mtcars$cyl),
-       col = 1:3, pch = 1, bty = "n")
+legend(
+  x = 5, y = 33, legend = levels(mtcars$cyl),
+  col = 1:3, pch = 1, bty = "n"
+)
 ```
 
 ![](MFM-R-M7_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
@@ -320,6 +322,20 @@ class(mtcars$am) # ubah jadi factor
     ## [1] "numeric"
 
 ``` r
+mtcars$am <- as.factor(mtcars$am)
+class(mtcars$am)
+```
+
+    ## [1] "factor"
+
+``` r
+class(mtcars$cyl)
+```
+
+    ## [1] "factor"
+
+``` r
+mtcars$cyl <- as.factor(mtcars$am)
 class(mtcars$cyl)
 ```
 
@@ -391,16 +407,17 @@ ggplot(mtcars, aes(x = wt, y = mpg, fill = cyl)) +
 Pasang mpg ke sumbu x, pasang qsec ke sumbu y dan factor(cyl) pada col
 
 ``` r
-ggplot(mtcars, aes(x= mpg, y=qsec, col=factor(cyl))) +
+ggplot(mtcars, aes(x = mpg, y = qsec, col = factor(cyl))) +
   geom_point()
 ```
 
 ![](MFM-R-M7_files/figure-gfm/unnamed-chunk-27-1.png)<!-- -->
 
-Pasang factor(am) ke parameter shape
+Pasang factor(am) ke parameter
+shape
 
 ``` r
-ggplot(mtcars, aes(x= mpg, y=qsec, col=factor(cyl), shape=factor(am))) +
+ggplot(mtcars, aes(x = mpg, y = qsec, col = factor(cyl), shape = factor(am))) +
   geom_point()
 ```
 
@@ -410,7 +427,7 @@ Pasang (hp/wt) ke parameter
 size
 
 ``` r
-ggplot(mtcars, aes(x= mpg, y=qsec, col=factor(cyl), shape=factor(am), size=(hp/wt))) +
+ggplot(mtcars, aes(x = mpg, y = qsec, col = factor(cyl), shape = factor(am), size = (hp / wt))) +
   geom_point()
 ```
 
@@ -427,7 +444,7 @@ cyl.am <- ggplot(mtcars, aes(x = factor(cyl), fill = factor(am)))
 Tambahkan geom\_bar()
 
 ``` r
-cyl.am + 
+cyl.am +
   geom_bar()
 ```
 
@@ -436,7 +453,7 @@ cyl.am +
 Tambahkan parameter position dengan isi **“fill”**
 
 ``` r
-cyl.am + 
+cyl.am +
   geom_bar(position = "fill")
 ```
 
@@ -454,15 +471,16 @@ cyl.am +
 Gunakan fungsi scale\_\* untuk merapikan sumbu x dan y
 
 ``` r
-val = c("#E41A1C", "#377EB8")
-lab = c("Manual", "Automatic")
+val <- c("#E41A1C", "#377EB8")
+lab <- c("Manual", "Automatic")
 cyl.am +
   geom_bar(position = "dodge") +
-  scale_x_discrete("Cylinders") + 
+  scale_x_discrete("Cylinders") +
   scale_y_continuous("Number") +
-  scale_fill_manual("Transmission", 
-                    values = val,
-                    labels = lab)
+  scale_fill_manual("Transmission",
+    values = val,
+    labels = lab
+  )
 ```
 
 ![](MFM-R-M7_files/figure-gfm/unnamed-chunk-34-1.png)<!-- -->
