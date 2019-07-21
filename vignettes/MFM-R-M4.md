@@ -31,9 +31,8 @@ fungsi **mean** dan melewatkan vector diatas sebagai parameternya:
 
 ``` r
 mean(healths)
+#> [1] 3.5
 ```
-
-    ## [1] 3.5
 
 Rata-rata kesehatan awak kapal lebih mendekati angka 4 dan itu
 menyenangkan. Kita akan coba menggambarkannya menggunakan barplot:
@@ -68,14 +67,13 @@ Mari kita lihat bagaimana mean dengan awak kapal baru ini muncul di
 grafik yang sama:
 
 ``` r
-healths <- c(4,3,4,3,2,4,4,14)
+healths <- c(4, 3, 4, 3, 2, 4, 4, 14)
 
-names(healths) <- c("one-eye","peg-leg","smitty","hook","scooter","dan","mickey","davy jones")
+names(healths) <- c("one-eye", "peg-leg", "smitty", "hook", "scooter", "dan", "mickey", "davy jones")
 
 mean(healths)
+#> [1] 4.75
 ```
-
-    ## [1] 4.75
 
 Ini mungkin benar-benar akurat untuk mengatakan bahwa kru kita memiliki
 rata-rata 4,75, tetapi ini mungkin juga menyesatkan.
@@ -98,9 +96,8 @@ parameternya:
 
 ``` r
 median(healths)
+#> [1] 4
 ```
-
-    ## [1] 4
 
 Sekarang lebih masuk diakal. Berikutnya kita akan coba gambarkan kedalam
 barplot dan menambahkan garis horizontal sebagai mediannya:
@@ -128,6 +125,7 @@ barplot(pounds)
 ![](MFM-R-M4_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
 
 ``` r
+
 meanValue <- mean(pounds)
 ```
 
@@ -163,9 +161,8 @@ parameternya:
 deviation <- sd(pounds)
 
 deviation
+#> [1] 14500.62
 ```
-
-    ## [1] 14500.62
 
 Tambahkan garis horizontal pada barplot kita untuk menunjukkan standar
 deviasi di atas rata-rata (diatas kisaran normal)

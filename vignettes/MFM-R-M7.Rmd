@@ -3,9 +3,14 @@ title: ""
 output: github_document
 ---
 
-```{r, echo=FALSE}
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
 knitr::include_graphics("./images/header7.png")
 ```
+
 
 ***
 
@@ -133,10 +138,12 @@ legend(
 )
 ```
 
+*Tambahan: implementasi menggunakan ggplot:*
+
 ```{r}
 ggplot(mtcars, aes(x = wt, y = mpg, colour = cyl)) +
-  geom_point() +
-  geom_smooth(method = "lm", se = FALSE, fullrange = TRUE) +
+  geom_point(pch = 1, size = 2) +
+  geom_smooth(method = "lm", se = FALSE, fullrange = TRUE, show.legend = FALSE) +
   scale_colour_manual(values = c("black", "red", "green")) +
   ggthemes::theme_base()
 ```

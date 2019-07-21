@@ -27,18 +27,16 @@ diperhatikan. Silahkan cetak vector chests ke konsol:
 
 ``` r
 print(chests)
+#> [1] "gold"   "silver" "gems"   "gold"   "gems"
 ```
-
-    ## [1] "gold"   "silver" "gems"   "gold"   "gems"
 
 Anda melihat item barang yang berulang, sekarang cetak faktor types:
 
 ``` r
 print(types)
+#> [1] gold   silver gems   gold   gems  
+#> Levels: gems gold silver
 ```
-
-    ## [1] gold   silver gems   gold   gems  
-    ## Levels: gems gold silver
 
 Dicetak di bagian bawah, Anda akan melihat tingkatan faktor, kelompok
 nilai yang “unik”. Perhatikan juga bahwa tidak ada tanda kutip di
@@ -50,14 +48,12 @@ faktor types ke dalam fungsi **as.integer**:
 
 ``` r
 as.integer(types)
+#> [1] 2 3 1 2 1
 ```
-
-    ## [1] 2 3 1 2 1
 
 Kita juga bisa mendapatkan tingkatan faktor dengan fungsi **levels**:
 
 ``` r
 levels(types)
+#> [1] "gems"   "gold"   "silver"
 ```
-
-    ## [1] "gems"   "gold"   "silver"

@@ -3,7 +3,11 @@ title: ""
 output: github_document
 ---
 
-```{r, echo=FALSE}
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
 knitr::include_graphics("./images/header4.png")
 ```
 
