@@ -2,11 +2,16 @@ Type: Compendium
 Package: mfm-dsi
 Title: MFM Data Science Indonesia
 Version: 0.0.1
-Authors@R: 
+Authors@R: c(
+    person(given = "Rahman",
+           family = "Firmansyah",
+           role = "aut",
+           email = "rahmanf88@gmail.com"),
     person(given = "Muhammad Aswan",
            family = "Syahputra",
            role = c("aut", "cre"),
            email = "muhammadaswansyahputra@gmail.com")
+  )
 Description: This repository contains materials of Melek for Member (MFM) program delivered by DSI chapter West Java.
 License: CCBY-4.0
 Depends: 
